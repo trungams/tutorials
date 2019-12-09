@@ -1,0 +1,2 @@
+Total time: 5.157346 (sec)
+Average time to process a request: 0.000257867 (sec)
