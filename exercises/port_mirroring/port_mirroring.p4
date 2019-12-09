@@ -192,7 +192,6 @@ control MyIngress (inout headers hdr,
 
         // selective mirroring: forward only tcp packets with length > 0
         
-        /*
         if (hdr.tcp.isValid() 
             && ((bit<16>)hdr.ipv4.totalLen
                 -(4*(bit<16>)hdr.ipv4.ihl)
@@ -204,7 +203,7 @@ control MyIngress (inout headers hdr,
             if (hdr.tcp.dstPort == HTTP_PORT) {
                 mirror_http_to_node.apply();
             }
-        }*/
+        }
         
         // ipv4 forwarding
         if (hdr.ipv4.isValid()) {
