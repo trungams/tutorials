@@ -144,7 +144,7 @@ control MyIngress (inout headers hdr,
     }
     table mirror_http_to_node {
         key = {
-            hdr.ipv4.dstAddr: lpm;
+            hdr.ipv4.dstAddr: exact;
         }
         actions = {
             do_copy;
@@ -154,7 +154,7 @@ control MyIngress (inout headers hdr,
     }
     table mirror_http_from_node {
         key = {
-            hdr.ipv4.srcAddr: lpm;
+            hdr.ipv4.srcAddr: exact;
         }
         actions = {
             do_copy;
@@ -180,7 +180,6 @@ control MyIngress (inout headers hdr,
         // dbg_table.apply();
 
         // forward all http traffic
-        
         /*
         if (hdr.tcp.isValid()) {
             if (hdr.tcp.srcPort == HTTP_PORT)
@@ -188,10 +187,9 @@ control MyIngress (inout headers hdr,
             if (hdr.tcp.dstPort == HTTP_PORT)
                 mirror_http_to_node.apply();
         }
-        */                
+        */
 
         // selective mirroring: forward only tcp packets with length > 0
-        
         if (hdr.tcp.isValid() 
             && ((bit<16>)hdr.ipv4.totalLen
                 -(4*(bit<16>)hdr.ipv4.ihl)
@@ -204,7 +202,7 @@ control MyIngress (inout headers hdr,
                 mirror_http_to_node.apply();
             }
         }
-        
+
         // ipv4 forwarding
         if (hdr.ipv4.isValid()) {
             ipv4_lpm.apply();

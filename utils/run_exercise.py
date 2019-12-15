@@ -84,7 +84,6 @@ class ExerciseTopo(Topo):
                 switchClass = configureP4Switch(
                         sw_path=bmv2_exe,
                         json_path=params["program"],
-                        log_console=True,
                         pcap_dump=pcap_dir)
             else:
                 # add default switch
@@ -246,7 +245,6 @@ class ExerciseRunner:
         defaultSwitchClass = configureP4Switch(
                                 sw_path=self.bmv2_exe,
                                 json_path=self.switch_json,
-                                log_console=True,
                                 pcap_dump=self.pcap_dir)
 
         self.topo = ExerciseTopo(self.hosts, self.switches, self.links, self.log_dir, self.bmv2_exe, self.pcap_dir)

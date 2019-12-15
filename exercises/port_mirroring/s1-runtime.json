@@ -51,7 +51,7 @@
         {
             "table": "MyIngress.mirror_http_to_node",
             "match": {
-                "hdr.ipv4.dstAddr": ["10.0.2.2", 32]
+                "hdr.ipv4.dstAddr": "10.0.2.2"
             },
             "action_name": "MyIngress.do_copy",
             "action_params": { }
@@ -65,7 +65,7 @@
         {
             "table": "MyIngress.mirror_http_from_node",
             "match": {
-                "hdr.ipv4.srcAddr": ["10.0.2.2", 32]
+                "hdr.ipv4.srcAddr": "10.0.2.2"
             },
             "action_name": "MyIngress.do_copy",
             "action_params": { }
