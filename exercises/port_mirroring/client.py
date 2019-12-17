@@ -4,12 +4,14 @@ import requests
 from timeit import default_timer as timer
 
 ITERATIONS = 20000
+TARGET_WEBSITE = 'http://10.0.2.2:80'
+TARGET_WEBSITE = 'http://localhost:80'
 times = []
 
 if __name__ == '__main__':
     for i in range(ITERATIONS):
         start = timer()
-        r = requests.get('http://10.0.2.2:80')
+        r = requests.get(TARGET_WEBSITE)
         end = timer()
         if r.status_code != 200:
             exit(1)
