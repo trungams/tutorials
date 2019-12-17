@@ -162,23 +162,8 @@ control MyIngress (inout headers hdr,
         size = 256;
         default_action = do_copy();
     }
-    /*
-    table dbg_table {
-        key = {
-            hdr.ipv4.totalLen: exact;
-            hdr.ipv4.ihl: exact;
-            hdr.tcp.dataOffset: exact;
-        }
-        actions = {
-            NoAction;
-        }
-        const default_action = NoAction;
-    }
-    */
 
     apply {
-        // dbg_table.apply();
-
         // forward all http traffic
         /*
         if (hdr.tcp.isValid()) {
@@ -226,23 +211,11 @@ control MyEgress (inout headers hdr,
         }
         size = 256;
     }
-    /*
-    table dbg_table {
-        key = {
-            standard_metadata.instance_type: exact;
-        }
-        actions = {
-            NoAction;
-        }
-        const default_action = NoAction;
-    }
-    */
 
     apply { 
         if (IS_I2E_CLONE(standard_metadata)) {
             mirror_http.apply(); 
         }
-        // dbg_table.apply();
     }
 }
 
